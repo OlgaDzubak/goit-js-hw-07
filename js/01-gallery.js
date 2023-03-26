@@ -19,7 +19,6 @@ function createGalleryItemsHTMLStr(items) {                                     
             </a>
         </li>`;
     }).join("");
-
     return galleryItemsHtmlString;
 }
 ulGallery.insertAdjacentHTML('afterbegin', createGalleryItemsHTMLStr(galleryItems)); //  додаємо рядок з html кодом, який повертає функція createGalleryItemsHTMLStr, до списку ul.gallery
@@ -44,10 +43,10 @@ function showModalWindow(event) {                                               
     instance.show();                                                                // Показуємо модальне вікно
     document.addEventListener('keydown',closeModalWindow);                          // Після відкриття модального вікна вішаємо на документ слухача клавіатури (будемо ловити натикання на клавішу "Escape")
 }
-
 function closeModalWindow(event){                                                   // Функція для обробки слухача клавіатури (закриває модальне вікно і видаляємо слухача клавіатури тільки якщо натиснута клавіша "Escape")
     if (event.key !== "Escape") {
         return;
     }
+    instance.close(); 
     document.removeEventListener('keydown',closeModalWindow);
 }
