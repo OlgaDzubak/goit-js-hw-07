@@ -8,10 +8,10 @@ const ulGallery = document.querySelector("ul.gallery");                         
 function createGalleryItemsHTMLStr(items) {                                          // пишемо функцію для формування рядка з html кодом, який будемо додавати в html файл
     const galleryItemsHtmlString = items.map(({preview, original, description}) => {
         return `
-        <li class="gallery__item" rel="noopener noreferrer nofollow"> 
-            <a class="gallery__link" href="${original}">
+        <li class="gallery__item js_target" rel="noopener noreferrer nofollow"> 
+            <a class="gallery__link js_target" href="${original}">
                 <img
-                    class="gallery__image"
+                    class="gallery__image js_target"
                     src="${preview}"
                     data-source="${original}"
                     alt="${description}"
@@ -32,7 +32,7 @@ let instance;                                                                   
 ulGallery.addEventListener('click', showModalWindow);                               // Додаємо слухача кліка на список ul.gallery, при кліку буде виконуватися функція showModalWindow
 function showModalWindow(event) {                                                   // Функція відкриває модальне вікно з великим зображенням картинки, яка була обрана кліком в галлереї ul.gallery
     event.preventDefault();                                                         // Забороняємо поведінку браузера за замовчуванням при натисканні посилання
-    if (event.target.nodeName !== 'IMG') {
+    if (!event.target.classList.contains('js_target')) {
         return;
     }
     instance = basicLightbox.create(`
